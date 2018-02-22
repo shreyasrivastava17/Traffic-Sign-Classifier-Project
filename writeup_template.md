@@ -90,6 +90,7 @@ My final model consisted of the following layers:
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 To train the model, I have use the following hyperparamerts:
+
 | Hyper Parameter         		      |     Value	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Learning Rate         		      | 0.001   							| 
@@ -108,7 +109,9 @@ My final model results were:
 * test set accuracy of .937
 
 I have chossen a very well known architechture to start with the training of the traffic signs classifier model. The model that I have used as a base is the LeNet Architecture. I hve modified the architecture a bit to achieve this accuracy.
+
 I beleived that the LeNet acrcitecture would be a relevent model to start with for the traffic sign application as it is complex enough. Moreover the Input to the LeNet model is 32x32x1 which is the same in this case as well as the German traffic signs dataset provided here has the images of the shape 32x32x3 and i had preprocessed the images to garyscale, thus converting them to 32x32x1.
+
 My belief that the Lenet architecture with some changes works well for the traffic signs application as well as this is proven by the training, validation and test accuracy mentioned above. The model with very mere changes works well and gives a test accuracy of 93.6% and a validation accuracy of 95.6%. Moreover the model performs well on the unseen data, i.e it gives a accuracy of 60% on the new images that i downloaded from the internet.
 
 ### Test a Model on New Images
@@ -120,22 +123,29 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
+The first image might be difficult to classify due to the watermarks on it or due to the background noise in the pictures.
 
+the second image might be difficult to classify die to the quality of the image.
+
+For the third image, i think that it should be clasified correctly.
+
+Fourth Image might not be a correct prediction as thw image meges with the background and it might be diffcult just to figure out the correct sign
+
+The fifth image should also be classified correctly as the quality of the image is good and there are a fair number of training examples for the image. Moreover there is less possibility that the network will get confused about the sign as the sign does not resemble much to the others in the data set 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| BIcycle Crossing      		| Speed Limit(60 km/hr)				| 
+| Priority Road     			| Priority Road 										|
+| Spped Limit(100 km/hr)					| Spped Limit(100 km/hr)											|
+| Right-of-way at the next intersection	      		| Speed Limit(60 km/hr)				 				|
+| Children Crossing 			| Children Crossing      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 3 of the 5 traffic signs, which gives an accuracy of 60%. This compares favorably to the accuracy on the test set of traffic signs data
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
