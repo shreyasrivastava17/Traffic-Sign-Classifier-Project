@@ -1,3 +1,4 @@
+ 
 # **Traffic Sign Recognition** 
 
 ## Writeup
@@ -5,11 +6,23 @@
 ### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
+[//]: # (Image References)
+
+[image1]: ./output_images/Images%20after%20Preprocessing.png
+[image2]: ./output_images/Images%20before%20Processing.png 
+[image3]: ./output_images/New%20Images.png 
+[image4]: ./output_images/Training%20Data%20Graph.png 
+[image5]: ./New_Test_Images/download.jpg  
+[image6]: ./New_Test_Images/img%201.png 
+[image7]: ./New_Test_Images/img%203.png 
+[image8]: ./New_Test_Images/img%204.jpg
+[image9]: ./New_Test_Images/img%208.jpg
+[image10]: ./output_images/after%20grayscale.png
+[image11]: ./output_images/before%20gray%20scale.png
 
 **Build a Traffic Sign Recognition Project**
 The goals / steps of this project are the following:
-* Load the data set (see below for links to the project data set)
-* Explore, summarize and visualize the data set
+* Load the data set (see below for links to the project data set) * Explore, summarize and visualize the data set
 * Design, train and test a model architecture
 * Use the model to make predictions on new images
 * Analyze the softmax probabilities of the new images
@@ -19,30 +32,32 @@ The goals / steps of this project are the following:
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
----
+--
 ### Writeup / README
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
 You're reading it! and here is a link to my [project code](https://github.com/shreyasrivastava17/Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 
-
 ### Data Set Summary & Exploration
 
 #### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
-FI used the pyhton to calculate summary statistics of the traffic signs data set provided:
-4
+I used the pyhton to calculate summary statistics of the traffic signs data set provided:
+
 * The size of training set is 34799
 * The size of the validation set is 4410
 * The size of test set is 12630
 * The shape of a traffic sign image is (32, 32, 3)
-* The number of unique classes/labels in the data set is 
+* The number of unique classes/labels in the data set is 43
 
- #### 2. Include an exploratory visualization of the dataset.
-Here is an exploratory visualization of the data set. To visualize the data set I have printed 40 random image from the training data along with their label.
+#### 2. Include an exploratory visualization of the dataset.
+Here is an exploratory visualization of the data set. To visualize the data set I have printed 40 random image from the training data along with their label. Below is the image of 40 random images from the data set before preprocessing them.
 
-![alt text][image1]
+![alt text][image2]
+
 Here is a Bar Garph representation of the data set. It has the the clasess on the x-axis and the number of images of that class in the-axis.
+
+![alt text][image4]
 
 ### Design and Test a Model Architecture
 
@@ -50,21 +65,29 @@ Here is a Bar Garph representation of the data set. It has the the clasess on th
 To preprocess the images i have performed the following the steps:
 1. GrayScaling the Data: I have grayscaled the images because the colour of the traffic signs do not provide much data do the neural network while training it on the data set. I tried training the neural network on the cloured image s but tghe acuuracy was low so i chjose to garyscale the images. 
 
-Here is some example of a traffic sign images before and after grayscaling.
-Before Garscaling
-![alt text][image2]
-AFter Garyscaling
-![alt text][image2]
+Here is an example of a traffic sign image before and after grayscaling.
+Before Garscaling:
+
+![alt text][image11]
+
+After Garyscaling:
+
+![alt text][image10]
+
+
 2. Normalising the Data: I have normalised the data so that the data is well centered and not scattered.  
 3. Shuffling the data: i have shuffled the training data so that the same kind of images are not there next to each other in the data set.
-Here are some images before and after applying all the preprocessing ogf the data
 
-![alt text][image3]
+Here are some images after applying all the preprocessing steps on the data.
+
+![alt text][image1]
+
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 The final model arcitecture that i am using has 2 convolutional layers and 3 fully connected Layes. To start with io had had given an input of 32x32x1 grayscale image to the model. The first layer is a 5x5 convolational layer with a 1x1 stride, VALID padding that gives an output of 28x28x16. On the output of the convolutional layer i have applied a RELU activaltion funtion. I have then used max pooling with a stride of 2x2 thus recieveinbg an output of 14x14x6. Then i have user a dropout on this layer with a keep_prop of 0.7 to mitigate overfitting. 
 The Second layer is again a 5x5 convolutional layer that has a stride of 1x1 and valid padding. the i have used Relu as the activation function. Next i have used max pooling with a 2x2 stride and valid padding. The dropout for this layer is 30%. 
 Next I have flattened the layer to produce 400 outputs. Then i have used 3 fully connected layers to ultimately give out an output of 43 classes and ahve used Relu as an activation function on all the fully connected layers.
+
 My final model consisted of the following layers:
 
 | Layer         		      |     Description	        					| 
@@ -80,7 +103,7 @@ My final model consisted of the following layers:
 |	Dropout					|Keep_prob=0.7												| 
 | Flatten     |Outout= 400   |
 | Fully Connected Layer      |Output 120   |
-RELU|Relu activation function|
+|RELU|Relu activation function|
 | Fully Connected Layer   |Output 84 |
 |RELU| Relu activation funtion|
 | Fully Connected Layer   |Output 43 |
@@ -89,21 +112,24 @@ RELU|Relu activation function|
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
+
 To train the model, I have use the following hyperparamerts:
 
 | Hyper Parameter         		      |     Value	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Learning Rate         		      | 0.001   							| 
 | Epochs     	 | 37 	|
-| Batch Size					             |	128											|| Keep Prob	      	   | 0.7 in training 				|
+| Batch Size					             |	128											|
+| Keep Prob	      	   | 0.7 in training 				|
 
 
 The model that I have trained uses a Adam Optimiser to train the model. The trained model is able to detect the Traffic signs correctly with a validation accuracy of .956
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 My final model results were:
+
 * training set accuracy of 96
-* validation set accuracy of .945 
+ * validation set accuracy of .945 
 * test set accuracy of .93
 
 I have chossen a very well known architechture to start with the training of the traffic signs classifier model. The model that I have used as a base is the LeNet Architecture. I hve modified the architecture a bit to achieve this accuracy.
@@ -117,8 +143,23 @@ My belief that the Lenet architecture with some changes works well for the traff
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+   ![alt text][image5]
+
+
+   ![alt text][image6] 
+
+
+   ![alt text][image7] 
+
+
+   ![alt text][image8] 
+
+
+   ![alt text][image9]
+
+The Imges after preprocessing are as under:
+
+![alt text][image3]
 
 The first image might be difficult to classify due to the watermarks on it or due to the background noise in the pictures.
 
@@ -128,7 +169,8 @@ For the third image, i think that it might not be classified correctly due to th
 
 For the fourth image, i think that it should be clasified correctly
 
-The fifth image might not be classified correctly due to the angling of the traffic sign in the image and the sifn mixes with the background 
+The fifth image might not be classified correctly due to the angling of the traffic sign in the image and the sifn mixes with the background. 
+
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 Here are the results of the prediction:
@@ -200,7 +242,5 @@ For the last image the model guessed the image as a Speed Limit(60 km/hr) sign b
 | .038			    | Speed Limit(120 km/hr)      							|
 
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 
