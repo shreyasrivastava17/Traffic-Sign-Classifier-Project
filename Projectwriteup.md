@@ -215,11 +215,11 @@ For the third image the model guessed the image as a end of speed limit(80 km/hr
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .48         			| End of Speed Limit(80 km/hr)   									| 
-| .20     				| Speed Limit(20 km/hr) 										|
-| .039					| Speed Limit(60 km/hr)											|
-| .035	      			| Speed Limit(80 km/hr)					 				|
-| .034			    | Speed Limit(30 km/hr)      							|
+| .94         			| End of Speed Limit(80 km/hr)   									| 
+| .0177     				| Speed Limit(20 km/hr) 										|
+| .015					| Speed Limit(60 km/hr)											|
+| .014	      			| Speed Limit(80 km/hr)					 				|
+| .008			    | Speed Limit(30 km/hr)      							|
 
 For the fourth image the model was able to guess the traffic sign correctly as a Keep Right sign. The top 5 softmax probabilities are listed below.
 
