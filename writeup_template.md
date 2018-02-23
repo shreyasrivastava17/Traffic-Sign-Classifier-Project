@@ -80,7 +80,7 @@ My final model consisted of the following layers:
 |	Dropout					|Keep_prob=0.7												| 
 | Flatten     |Outout= 400   |
 | Fully Connected Layer      |Output 120   |
-|RELU|Relu activation function|
+RELU|Relu activation function|
 | Fully Connected Layer   |Output 84 |
 |RELU| Relu activation funtion|
 | Fully Connected Layer   |Output 43 |
@@ -95,23 +95,20 @@ To train the model, I have use the following hyperparamerts:
 |:---------------------:|:---------------------------------------------:| 
 | Learning Rate         		      | 0.001   							| 
 | Epochs     	 | 37 	|
-| Batch Size					             |	128											|
-| Keep Prob	      	   | 0.7 in training 				|
+| Batch Size					             |	128											|| Keep Prob	      	   | 0.7 in training 				|
 
 
 The model that I have trained uses a Adam Optimiser to train the model. The trained model is able to detect the Traffic signs correctly with a validation accuracy of .956
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
-
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of .956 
-* test set accuracy of .937
+* training set accuracy of 96
+* validation set accuracy of .945 
+* test set accuracy of .93
 
 I have chossen a very well known architechture to start with the training of the traffic signs classifier model. The model that I have used as a base is the LeNet Architecture. I hve modified the architecture a bit to achieve this accuracy.
 
 I beleived that the LeNet acrcitecture would be a relevent model to start with for the traffic sign application as it is complex enough. Moreover the Input to the LeNet model is 32x32x1 which is the same in this case as well as the German traffic signs dataset provided here has the images of the shape 32x32x3 and i had preprocessed the images to garyscale, thus converting them to 32x32x1.
-
 My belief that the Lenet architecture with some changes works well for the traffic signs application as well as this is proven by the training, validation and test accuracy mentioned above. The model with very mere changes works well and gives a test accuracy of 93.6% and a validation accuracy of 95.6%. Moreover the model performs well on the unseen data, i.e it gives a accuracy of 60% on the new images that i downloaded from the internet.
 
 ### Test a Model on New Images
@@ -125,44 +122,83 @@ Here are five German traffic signs that I found on the web:
 
 The first image might be difficult to classify due to the watermarks on it or due to the background noise in the pictures.
 
-the second image might be difficult to classify die to the quality of the image.
+The second image might be difficult to classify due to the quality of the image.
 
-For the third image, i think that it should be clasified correctly.
+For the third image, i think that it might not be classified correctly due to the poor quality of the image and the resemblence to the other speed signs
 
-Fourth Image might not be a correct prediction as thw image meges with the background and it might be diffcult just to figure out the correct sign
+For the fourth image, i think that it should be clasified correctly
 
-The fifth image should also be classified correctly as the quality of the image is good and there are a fair number of training examples for the image. Moreover there is less possibility that the network will get confused about the sign as the sign does not resemble much to the others in the data set 
+The fifth image might not be classified correctly due to the angling of the traffic sign in the image and the sifn mixes with the background 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| BIcycle Crossing      		| Speed Limit(60 km/hr)				| 
+| Bicycle Crossing      		| Speed Limit(80 km/hr)				| 
 | Priority Road     			| Priority Road 										|
-| Spped Limit(100 km/hr)					| Spped Limit(100 km/hr)											|
-| Right-of-way at the next intersection	      		| Speed Limit(60 km/hr)				 				|
-| Children Crossing 			| Children Crossing      							|
+| Spped Limit(30 km/hr)					| End of Spped Limit(80 km/hr)											|
+| Keep Right	      		| Keep Right				 				|
+| Right-of-way at the next intersection 			| Speed Limit(60 km/hr)      							|
 
 
-The model was able to correctly guess 3 of the 5 traffic signs, which gives an accuracy of 60%. This compares favorably to the accuracy on the test set of traffic signs data
+The model was able to correctly guess 2 of the 5 traffic signs, which gives an accuracy of 40%. This compares favorably to the accuracy on the test set of traffic signs data
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model is relatively sure that this is a speed limit(60 km/hr)  sign (probability of 0.48), and the image does contain a stop sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .48         			| Speed Limit(80 km/hr)   									| 
+| .20     				| Speed Limit(60 km/hr) 										|
+| .039					| Speed Limit(120 km/hr)											|
+| .035	      			| General Caution					 				|
+| .034			    | Speed Limit(70 km/hr)      							|
 
 
-For the second image ... 
+For the second image the model guessed the image correctly as a priority road and the top 5 softmax probabilities are as below:
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 3.67         			| Priority Road   									| 
+| .034     				| RoundAbout Mandatory										|
+| .002					| No Vehicles											|
+| .0006	      			| No Passing 					 				|
+| .0005      |   Road Work   |
+
+For the third image the model guessed the image as a end of speed limit(80 km/hr) sign when it is not that sign. The top 5 softmax probabilities for the predictions are listed below.
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .48         			| End of Speed Limit(80 km/hr)   									| 
+| .20     				| Speed Limit(20 km/hr) 										|
+| .039					| Speed Limit(60 km/hr)											|
+| .035	      			| Speed Limit(80 km/hr)					 				|
+| .034			    | Speed Limit(30 km/hr)      							|
+
+For the fourth image the model was able to guess the traffic sign correctly as a Keep Right sign. The top 5 softmax probabilities are listed below.
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| Keep Right   									| 
+| 2.97e^-16      				| Yeild 										|
+| .1.16e^-17					| Children Crossing										|
+| .1.63e^-18	      			| Slippery Road 				|
+| .1.23e^-18			    | Right-of-way at the next intersection      							|
+
+For the last image the model guessed the image as a Speed Limit(60 km/hr) sign but it is not a speed limit sign. The top 5 softmax probabilities are as under.
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .42        			| Speed Limit(80 km/hr)   									| 
+| .17     				| Speed Limit(60 km/hr) 										|
+| .05					| General Caution											|
+| .034	      			| Traffic Signals					 				|
+| .038			    | Speed Limit(120 km/hr)      							|
+
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
